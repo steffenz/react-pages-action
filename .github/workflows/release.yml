@@ -18,7 +18,7 @@ jobs:
         run: "npm run build"
 
       - name: "Remove source files"
-        run: "find -maxdepth 1 ! -name build -exec rm -rv {} \;"
+        run: "find -maxdepth 1 ! -name build -exec rm -rv {} \\;"
 
       - name: "List files"
         run: "ls -la"
