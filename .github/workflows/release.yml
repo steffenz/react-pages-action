@@ -1,0 +1,24 @@
+name: Release script
+on:
+  push:
+    branches:
+      - master
+jobs:
+  start_release:
+    runs-on: ubuntu-latest
+    name: Release originated from merge job
+    steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@v2
+
+      - name: "Install dependencies"
+        run: "npm install"
+
+      - name: "Create production build"
+        run: "npm run build"
+
+      - name: "Remove source files"
+        run: "find -maxdepth 1 ! -name build -exec rm -rv {} \;"
+
+      - name: "List files"
+        run: "ls -la"
