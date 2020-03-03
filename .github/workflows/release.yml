@@ -20,5 +20,11 @@ jobs:
       - name: "Remove source files"
         run: "find -maxdepth 1 ! -name build -exec rm -rv {} \\;"
 
-      - name: "List files"
-        run: "ls -la"
+      - name: "Move files from build to root"
+        run: "mv build/* . && rm -rf build"
+
+      - name: "Push to gh-pages branch"
+        run: |
+          git add .
+          git commit -m "publish new version"
+          git push origin master:gh-pages --force
